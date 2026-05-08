@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+
+@layer components {
+  .form-input {
+    @apply bg-secondary border border-border text-foreground text-sm px-3 py-2 rounded-lg
+           placeholder:text-muted-foreground/50
+           focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring
+           transition-colors w-full;
+  }
+}
+@tailwind components;
+@tailwind utilities;
+
+/* ====================================================
+   RENTABILIDAD MVP — Design System
+   All colors are HSL. No raw colors in components.
+   ==================================================== */
+
+@layer base {
+  :root {
+    /* Surfaces */
+    --background: 240 10% 3.9%;
+    --foreground: 240 5% 90%;
+
+    --card: 240 10% 6%;
+    --card-foreground: 240 5% 90%;
+
+    --popover: 240 10% 7%;
+    --popover-foreground: 240 5% 90%;
+
+    /* Brand */
+    --primary: 250 80% 70%;
+    --primary-foreground: 250 10% 98%;
+
+    --secondary: 240 8% 12%;
+    --secondary-foreground: 240 5% 80%;
+
+    --muted: 240 8% 10%;
+    --muted-foreground: 240 4% 50%;
+
+    --accent: 240 8% 12%;
+    --accent-foreground: 240 5% 90%;
+
+    /* Status */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 10% 10%;
+    --caution: 48 96% 50%;
+    --caution-foreground: 48 10% 10%;
+    --success: 142 71% 45%;
+    --success-foreground: 142 10% 98%;
+
+    /* Structure */
+    --border: 240 5% 15%;
+    --input: 240 5% 15%;
+    --ring: 250 80% 70%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar */
+    --sidebar-background: 240 10% 4.5%;
+    --sidebar-foreground: 240 4% 50%;
+    --sidebar-primary: 250 80% 70%;
+    --sidebar-primary-foreground: 250 10% 98%;
+    --sidebar-accent: 240 8% 10%;
+    --sidebar-accent-foreground: 240 5% 80%;
+    --sidebar-border: 240 5% 12%;
+    --sidebar-ring: 250 80% 70%;
+
+    /* Chart colors */
+    --chart-1: 250 80% 70%;
+    --chart-2: 142 71% 45%;
+    --chart-3: 38 92% 50%;
+    --chart-4: 200 80% 60%;
+    --chart-5: 0 72% 51%;
+
+    /* Gradients */
+    --gradient-card-hover: radial-gradient(circle at 15% 15%, hsla(250, 80%, 70%, 0.1), hsla(240, 10%, 6%, 0) 60%);
+    --gradient-primary: linear-gradient(135deg, hsl(250 80% 70%), hsl(220 80% 65%));
+    --shadow-card: 0 0 0 1px hsl(240 5% 15% / 0.7);
+    --shadow-card-hover: 0 0 0 1px hsl(250 80% 70% / 0.4), 0 4px 24px -4px hsl(250 80% 70% / 0.15);
+    --shadow-elevated: 0 8px 32px -8px hsl(240 10% 2% / 0.8);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Satoshi', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'tnum' on;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* ====================================================
+   KPI Value — L1 Typography
+   ==================================================== */
+.kpi-value {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+/* ====================================================
+   Label Caps — UI Labels
+   ==================================================== */
+.label-caps {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 500;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: hsl(var(--muted-foreground));
+}
+
+/* ====================================================
+   Section Heading — L2
+   ==================================================== */
+.section-heading {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.1rem, 3vw, 1.35rem);
+  letter-spacing: -0.02em;
+}
+
+/* ====================================================
+   Tabular nums on data cells
+   ==================================================== */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ====================================================
+   Card glow hover
+   ==================================================== */
+.card-glow {
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  position: relative;
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--gradient-card-hover);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+.card-glow:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ====================================================
+   Scrollbar styling
+   ==================================================== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* ====================================================
+   Table row hover
+   ==================================================== */
+.table-row-hover:hover {
+  background: hsl(240 5% 90% / 0.03);
+}
+
+/* ====================================================
+   Status color utilities
+   ==================================================== */
+.status-green { color: hsl(var(--success)); }
+.status-yellow { color: hsl(var(--caution)); }
+.status-orange { color: hsl(var(--warning)); }
+.status-red { color: hsl(var(--destructive)); }
+.status-muted { color: hsl(var(--muted-foreground)); }
+
+.bg-status-green { background: hsl(var(--success) / 0.12); color: hsl(var(--success)); }
+.bg-status-yellow { background: hsl(var(--caution) / 0.12); color: hsl(var(--caution)); }
+.bg-status-orange { background: hsl(var(--warning) / 0.12); color: hsl(var(--warning)); }
+.bg-status-red { background: hsl(var(--destructive) / 0.12); color: hsl(var(--destructive)); }
+.bg-status-muted { background: hsl(var(--muted-foreground) / 0.12); color: hsl(var(--muted-foreground)); }
